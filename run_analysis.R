@@ -6,6 +6,7 @@ library(tidyr)
 library(stringr)
 library(data.table)
 library(RCurl)
+
 ## download zipped file to my machine and load it to r
 URL <- "https://d396qusza40orc.cloudfront.net/getdata%2Fprojectfiles%2FUCI%20HAR%20Dataset.zip"
 temp <- tempfile()
@@ -22,8 +23,10 @@ filename_path <- zipdf$Name[1]; activities <- read.table(unz(temp, filename_path
 #Pre allocate vectors
 DF_List_test <- vector(mode = "list", length = length(fileInd)/2) #pre allocate a list vector to receive the data.
 VarName_test <- vector(mode = "character", length = length(fileInd)/2) #pre allocate a character vector to receive the names of the files
+
 DF_List_train <- vector(mode = "list", length = length(fileInd)/2) #pre allocate a list vector to receive the data.
 VarName_train <- vector(mode = "character", length = length(fileInd)/2) #pre allocate a character vector to receive the names of the files
+
 # Loop through the files to extract the data.
 c = 0
 for (iReadData in 1:length(fileInd)){
@@ -35,12 +38,14 @@ for (iReadData in 1:length(fileInd)){
                 DF_List_test[[c]] <- read.table(unz(temp, filename_path)) # extract the test data from the file to the list
                 VarName_test[c] <- VarName
         }else{
+
                 DF_List_train[[c-length(fileInd)/2]] <- read.table(unz(temp, filename_path)) # extract the trail data from the file to the list
                 VarName_train[c-length(fileInd)/2] <- VarName
         }
 }
 unlink(temp) # disconnect the connection with the zip file
 ## 1. Merges the training and the test sets to create one data set.
+
 # Form unique names for the variables in a data frame where x is the list of the file names you want to fix.
 AddNum2Header <- function(x, Rep.Vec = as.character(1:128)){
         VarName <- substr(x, 1, nchar(x)-4)
@@ -54,10 +59,10 @@ Headers <- c(unlist(Headers_tmp), "participants", feature_names$V2, "activity", 
 DF_test <- do.call(cbind, DF_List_test)
 names(DF_test) <- as.character(c(1:1715))
 DF_test <- mutate(DF_test, set = "test")
-DF_trail <- do.call(cbind, DF_List_train)
-names(DF_trail) <- as.character(c(1:1715))
-DF_trail <- mutate(DF_trail, set = "train")
-DF_FullData <- rbind(DF_test, DF_trail)
+DF_train <- do.call(cbind, DF_List_train)
+names(DF_train) <- as.character(c(1:1715))
+DF_train <- mutate(DF_train, set = "train")
+DF_FullData <- rbind(DF_test, DF_train)
 names(DF_FullData) <- Headers
 
 ## 2. Extract only the measurements on the mean and standard deviation for each measurement into df2. 
@@ -72,6 +77,7 @@ df2$activity <- str_replace(df2$activity, as.character(df2$activity), activities
 # At this point df2 is a data frame with descriptive variable names and activity names.
 
 ## 5. From the data set in step 4, create a 2nd, independent tidy data set with the average of each variable for each activity and each subject.
+
 # group the data by participants and activity and calculate the variables average. Also group by set in order not to loose this information.
 df.means <- df2 %>% 
           group_by(participants, activity, set) %>% 
