@@ -1,0 +1,47 @@
+                Human Activity Recognition Using Smartphones Data Set
+
+participants    1
+                Participants' i.d. code 1:30 as integer.
+
+activity	1
+		The activity during which the data was recorded.
+                1.	LAYING
+                2.	SITTING
+                3.	STANDING
+                4.	WALKING
+                5.	WALKING_DOWNSTAIRS
+                6.	WALKING_UPSRAIRS
+
+Set		1
+		Denoting if the data is part of the test or training set.
+                1.	Test
+                2.	Train
+
+Measurement	1
+                Acceleration (Acc) and gyroscope (Gyro) signals from the smartphone accelerometer and gyroscope in X, Y and                 Z axes. Accelerometer data is in standard gravity units 'g'. The angular velocity vector measured by the                   gyroscope for each window sample is in units of radians/second.
+                The features selected for this database come from the accelerometer and gyroscope 3-axial raw signals tAcc                 -XYZ and tGyro-XYZ. These time domain signals (prefix 't' to denote time) were captured at a constant rate                 of 50 Hz. Then they were filtered using a median filter and a 3rd order low pass Butterworth filter with a                 corner frequency of 20 Hz to remove noise. Similarly, the acceleration signal was then separated into body                 and gravity acceleration signals (tBodyAcc-XYZ and tGravityAcc-XYZ) using another low pass Butterworth                     filter with a corner frequency of 0.3 Hz. 
+                Subsequently, the body linear acceleration and angular velocity were derived in time to obtain Jerk signals                 (tBodyAccJerk-XYZ and tBodyGyroJerk-XYZ). Also, the magnitude of these three-dimensional signals were                      calculated using the Euclidean norm (tBodyAccMag, tGravityAccMag, tBodyAccJerkMag, tBodyGyroMag,                           tBodyGyroJerkMag). The magnitude was omitted from the tidy data as it could be calculated if needed at any                 time.
+                Finally, a Fast Fourier Transform (FFT) was applied to some of these signals producing fBodyAcc-XYZ,                       fBodyAccJerk-XYZ, fBodyGyro-XYZ, (Note the 'f' to indicate frequency domain signals).
+                The body acceleration/Gyroscope signals are obtained by subtracting the gravity from the total acceleration                 /gyroscope and therefore they could be calculated from the given data if needed.
+                1.	tBodyAcc
+                2.	tGravityAcc
+                3.	tBodyAccJerk
+                4.	tBodyGyro
+                5.	tBodyGyroJerk
+                6.	fBodyAcc
+                7.	fBodyAccJerk
+                8.	fBodyGyro 
+
+plane		1
+                defines the axis in which the measurement was measured. Consists of 3 levels.
+                1.	X 
+                2.	Y
+                3.	Z
+
+Mean		4
+                Grand mean values of the different measurements averaged for every set, participant and activity                           combinations.
+
+Std		4
+                Standard deviation values of the different measurements averaged for every set, participant and activity                   combinations.
+
+
