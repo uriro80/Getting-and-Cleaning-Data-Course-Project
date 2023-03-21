@@ -87,3 +87,4 @@ tidydf <- df.means %>% pivot_longer(!c("participants", "activity", "set"), names
         separate_wider_delim(cols = "measurement", delim = "-" ,names = c("measurement", "descriptive")) %>% # split the data in measurement to mean and std. 
         pivot_wider(names_from = descriptive, values_from = values) %>% # write the values separately for mean and std values.
         print()
+write.table(tidydf, file = "TidySmartphoneData.txt", row.name=FALSE )
